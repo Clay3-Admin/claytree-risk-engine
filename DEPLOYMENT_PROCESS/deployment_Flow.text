@@ -1,0 +1,32 @@
+VS->Tools->Command Line->developer powershell
+
+setx PATH "$env:PATH;C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin"
+
+Close/open PowerShell.
+
+cd D:\NBFC\src\Claytree.Risk.Functions
+func azure functionapp publish claytree-risk-fn-dev-si --dotnet-isolated
+
+IF NOT LOGIN USE BELOW COMAND
+az login --use-device-code
+
+NEw=============================
+1:
+cd "C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin"
+.\az.cmd --version
+
+2:
+.\az.cmd login
+
+3:odela.santhoshnarayana@claytree.in
+4:CODE in Email
+5:1
+6:$env:Path += ";C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin"
+7:cd D:\NBFC\src\Claytree.Risk.Functions
+8:func azure functionapp publish claytree-risk-fn-dev-si --dotnet-isolated
+ 
+
+
+7:az --version
+8:az account set --subscription "Azure subscription 1"
+9:az account show --query "{name:name, id:id, tenantId:tenantId, user:user.name}" -o table

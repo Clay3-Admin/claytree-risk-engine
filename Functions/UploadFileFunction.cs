@@ -1,0 +1,122 @@
+using Claytree.Risk.Functions.Extensions;
+using Claytree.Risk.Functions.Infrastructure;
+using Claytree.Risk.Functions.Interface;
+using Claytree.Risk.Functions.Models;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
+using Microsoft.Extensions.Logging;
+using System.Net;
+
+namespace Claytree.Risk.Functions.Functions;
+
+public sealed class UploadFileFunction
+{
+    private readonly ILogger<UploadFileFunction> _logger;
+    private readonly IUploadService _uploadService;
+
+    public UploadFileFunction(
+        ILogger<UploadFileFunction> logger,
+        IUploadService uploadService)
+    {
+        _logger = logger;
+        _uploadService = uploadService;
+    }
+
+    [Function("upload-file")]
+    public async Task<HttpResponseData> Run(
+        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "upload")] HttpRequestData req,
+        FunctionContext ctx)
+    {
+        var res = req.CreateResponse();
+        var ct = ctx.CancellationToken;
+
+        try
+        {
+            var contentType = req.Headers.TryGetValues("Content-Type", out var values)
+                ? values.FirstOrDefault() ?? string.Empty
+                : string.Empty;
+
+            if (!contentType.StartsWith("multipart/form-data", StringComparison.OrdinalIgnoreCase))
+                return res.WriteError(HttpStatusCode.BadRequest, "invalid_content_type", "Expected multipart/form-data.");
+
+            var fileParts = await MultipartFormDataReader.ReadAllFilesAsync(req.Body, contentType, ct);
+            if (fileParts.Count == 0)
+                return res.WriteError(HttpStatusCode.BadRequest, "no_file", "No file found in multipart request.");
+
+            var request = BuildRequest(req.Url);
+            var result = await _uploadService.ProcessAsync(request, fileParts, ct);
+
+            return res.WriteJson(HttpStatusCode.OK, new
+            {
+                message = result.Message,
+                loanApplicationId = result.LoanApplicationId,
+                applicationNumber = result.ApplicationNumber,
+                documentCount = result.Documents.Count,
+                documents = result.Documents
+            });
+        }
+        catch (UploadWorkflowException ex)
+        {
+            return res.WriteJson(ex.StatusCode, ex.Payload);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Upload failed");
+            return res.WriteError(HttpStatusCode.InternalServerError, "server_error", ex.Message);
+        }
+    }
+
+    private static UploadRequestContext BuildRequest(Uri url)
+    {
+        var q = ParseQuery(url);
+        string GetQ(string key) => q.TryGetValue(key, out var value) ? value : string.Empty;
+
+        Guid.TryParse(GetQ("loanApplicationId"), out var loanApplicationId);
+
+        Guid? replacesLoanDocumentId = null;
+        if (Guid.TryParse(GetQ("replacesLoanDocumentId"), out var rid))
+            replacesLoanDocumentId = rid;
+
+        return new UploadRequestContext
+        {
+            DocumentType = GetQ("documentType").Trim(),
+            ApplicationNumber = GetQ("applicationNumber"),
+            ApplicantName = GetQ("applicantName"),
+            Mobile = GetQ("mobile"),
+            Email = GetQ("email"),
+            CreatedBy = GetQ("createdBy"),
+            BranchCode = GetQ("branchCode"),
+            ProductCode = GetQ("productCode"),
+            DeclaredDocumentType = GetQ("declaredDocumentType").Trim(),
+            DocumentOwnerRole = GetQ("documentOwnerRole").Trim(),
+            DocumentSide = GetQ("documentSide").Trim(),
+            CaptureType = GetQ("captureType").Trim(),
+            LanguageHint = GetQ("languageHint").Trim(),
+            Source = GetQ("source").Trim(),
+            ReplacesLoanDocumentId = replacesLoanDocumentId,
+            LoanApplicationId = loanApplicationId,
+            TenantId = Guid.TryParse(GetQ("tenantId"), out var tid) ? tid : null
+        };
+    }
+
+    private static Dictionary<string, string> ParseQuery(Uri url)
+    {
+        var dict = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        var query = url.Query;
+        if (string.IsNullOrWhiteSpace(query))
+            return dict;
+
+        if (query.StartsWith("?"))
+            query = query[1..];
+
+        foreach (var part in query.Split('&', StringSplitOptions.RemoveEmptyEntries))
+        {
+            var kv = part.Split('=', 2);
+            var key = Uri.UnescapeDataString(kv[0]);
+            var value = kv.Length > 1 ? Uri.UnescapeDataString(kv[1]) : string.Empty;
+            dict[key] = value;
+        }
+
+        return dict;
+    }
+}

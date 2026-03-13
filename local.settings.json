@@ -1,0 +1,35 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "BLOB__ConnectionString": "REPLACE_IN_LOCAL_ONLY",
+    "BLOB__ContainerName": "uploads",
+    "UPLOAD__MaxFileMb": "25",
+    "COSMOS__Endpoint": "REPLACE_IN_LOCAL_ONLY",
+    "COSMOS__Key": "REPLACE_IN_LOCAL_ONLY",
+    "COSMOS__Database": "infinite-pdf-preview",
+    "COSMOS__Container": "referral",
+     "SQL__ConnectionString": "REPLACE_IN_LOCAL_ONLY",
+    
+    "AppNo__Enabled": "true",
+    "AppNo__DefaultFormat": "{BRANCH:3}-{PRODUCT:2}-{YY}{MM}-{SERIAL:6}",
+    "AppNo__Mode": "SERIAL",
+    "AppNo__DefaultBranchCode": "MUM",
+    "AppNo__DefaultProductCode": "PL",
+
+    "FileValidation__MaxFileSizeMb": "500",
+    "FileValidation__MaxPdfPages": "2000",
+    "FileValidation__MinWidthPx": "50",
+    "FileValidation__MinHeightPx": "50",
+    "FileValidation__MaxWidthPx": "10000",
+    "FileValidation__MaxHeightPx": "10000",
+    "FileValidation__MinDpi": "72",
+    "FileValidation__MaxDpi": "1200",
+
+    "DocumentIntelligence__Endpoint": "REPLACE_IN_LOCAL_ONLY",
+    "DocumentIntelligence__ApiKey": "REPLACE_IN_LOCAL_ONLY",
+    "DocumentIntelligence__ModelId": "prebuilt-layout",
+    "DocumentIntelligence__UseBlobUrlDirect": "true"
+  }
+} 
