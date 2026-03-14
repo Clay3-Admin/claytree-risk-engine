@@ -1,19 +1,21 @@
-using System.Net;
-using System.Threading.Tasks;
-using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace Claytree.Risk.Functions.Functions
 {
     public class HealthPingFunction
     {
-        [Function("HealthPing")]
-        public async Task<HttpResponseData> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "health")] HttpRequestData req)
+        [FunctionName("HealthPing")]
+        public IActionResult Run(
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "health/ping")] HttpRequest req,
+            ILogger log)
         {
-            var response = req.CreateResponse(HttpStatusCode.OK);
-            await response.WriteStringAsync("OK");
-            return response;
+            log.LogInformation("Health ping endpoint called.");
+
+            return new OkObjectResult("OK");
         }
     }
 }
