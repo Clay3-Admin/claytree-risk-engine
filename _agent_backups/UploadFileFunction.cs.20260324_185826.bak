@@ -71,9 +71,7 @@ public sealed class UploadFileFunction
         var q = ParseQuery(url);
         string GetQ(string key) => q.TryGetValue(key, out var value) ? value : string.Empty;
 
-        Guid? loanApplicationId = null;
-        if (Guid.TryParse(GetQ("loanApplicationId"), out var parsedLoanApplicationId))
-            loanApplicationId = parsedLoanApplicationId;
+        Guid.TryParse(GetQ("loanApplicationId"), out var loanApplicationId);
 
         Guid? replacesLoanDocumentId = null;
         if (Guid.TryParse(GetQ("replacesLoanDocumentId"), out var rid))
