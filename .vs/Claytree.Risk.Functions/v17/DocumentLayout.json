@@ -1,0 +1,79 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\AI\\claytree-ai\\workspace\\repos\\claytree-risk-engine\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C296DAC8-81B8-DF2B-A03F-2E14C560BFDA}|Claytree.Risk.Functions.csproj|d:\\ai\\claytree-ai\\workspace\\repos\\claytree-risk-engine\\local.settings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C296DAC8-81B8-DF2B-A03F-2E14C560BFDA}|Claytree.Risk.Functions.csproj|solutionrelative:local.settings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C296DAC8-81B8-DF2B-A03F-2E14C560BFDA}|Claytree.Risk.Functions.csproj|d:\\ai\\claytree-ai\\workspace\\repos\\claytree-risk-engine\\services\\uploadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C296DAC8-81B8-DF2B-A03F-2E14C560BFDA}|Claytree.Risk.Functions.csproj|solutionrelative:services\\uploadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C296DAC8-81B8-DF2B-A03F-2E14C560BFDA}|Claytree.Risk.Functions.csproj|d:\\ai\\claytree-ai\\workspace\\repos\\claytree-risk-engine\\functions\\uploadfilefunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C296DAC8-81B8-DF2B-A03F-2E14C560BFDA}|Claytree.Risk.Functions.csproj|solutionrelative:functions\\uploadfilefunction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "local.settings.json",
+              "DocumentMoniker": "D:\\AI\\claytree-ai\\workspace\\repos\\claytree-risk-engine\\local.settings.json",
+              "RelativeDocumentMoniker": "local.settings.json",
+              "ToolTip": "D:\\AI\\claytree-ai\\workspace\\repos\\claytree-risk-engine\\local.settings.json",
+              "RelativeToolTip": "local.settings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-23T14:04:20.515Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UploadFileFunction.cs",
+              "DocumentMoniker": "D:\\AI\\claytree-ai\\workspace\\repos\\claytree-risk-engine\\Functions\\UploadFileFunction.cs",
+              "RelativeDocumentMoniker": "Functions\\UploadFileFunction.cs",
+              "ToolTip": "D:\\AI\\claytree-ai\\workspace\\repos\\claytree-risk-engine\\Functions\\UploadFileFunction.cs",
+              "RelativeToolTip": "Functions\\UploadFileFunction.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAlwBwAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T13:43:58.455Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UploadService.cs",
+              "DocumentMoniker": "D:\\AI\\claytree-ai\\workspace\\repos\\claytree-risk-engine\\Services\\UploadService.cs",
+              "RelativeDocumentMoniker": "Services\\UploadService.cs",
+              "ToolTip": "D:\\AI\\claytree-ai\\workspace\\repos\\claytree-risk-engine\\Services\\UploadService.cs",
+              "RelativeToolTip": "Services\\UploadService.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAWwDwAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-22T15:29:13.193Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -80,7 +80,7 @@ public sealed class UploadFileFunction
         return new UploadRequestContext
         {
             DocumentType = GetQ("documentType").Trim(),
-            ApplicationNumber = string.IsNullOrWhiteSpace(GetQ("applicationNumber")) ? null : GetQ("applicationNumber"),
+            ApplicationNumber = GetQ("applicationNumber"),
             ApplicantName = GetQ("applicantName"),
             Mobile = GetQ("mobile"),
             Email = GetQ("email"),
