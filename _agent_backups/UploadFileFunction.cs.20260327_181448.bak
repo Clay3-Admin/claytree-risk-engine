@@ -36,7 +36,7 @@ public sealed class UploadFileFunction
                 ? values.FirstOrDefault() ?? string.Empty
                 : string.Empty;
 
-            if (string.IsNullOrWhiteSpace(contentType) || !contentType.Contains("multipart/form-data", StringComparison.OrdinalIgnoreCase))
+            if (!contentType.StartsWith("multipart/form-data", StringComparison.OrdinalIgnoreCase))
                 return res.WriteError(HttpStatusCode.BadRequest, "invalid_content_type", "Expected multipart/form-data.");
 
             var fileParts = await MultipartFormDataReader.ReadAllFilesAsync(req.Body, contentType, ct);
