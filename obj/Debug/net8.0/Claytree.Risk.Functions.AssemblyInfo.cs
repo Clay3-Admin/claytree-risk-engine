@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Claytree.Risk.Functions")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2db08cde2476e0c53aec31db05d1abc2a09f1931")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c23301b3a3eba64f871dc8897e0e4cabc8b1ea2a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Claytree.Risk.Functions")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Claytree.Risk.Functions")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
