@@ -85,12 +85,6 @@ public sealed class UploadService : IUploadService
                 });
             }
 
-            foreach (var pf in preparedFiles)
-            {
-                if (pf.Content.CanSeek)
-                    pf.Content.Position = 0;
-            }
-
             return await _loanDocumentRepository.SaveAsync(request, preparedFiles, ct);
         }
         finally

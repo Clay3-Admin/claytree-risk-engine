@@ -1,0 +1,10 @@
+{
+  "description": {
+    "language": "dotnet-isolated",
+    "extensions": [ ".dll" ],
+    "defaultExecutablePath": "dotnet",
+    "defaultWorkerPath": "Claytree.Risk.Functions.dll",
+    "workerIndexing": "true",
+    "canUsePlaceholder": true
+  }
+}
