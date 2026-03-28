@@ -99,7 +99,7 @@ public sealed class UploadService : IUploadService
                     matchedLoanDocumentId = x.DuplicateDetection.MatchedLoanDocumentId,
                     matchedLoanApplicationId = x.DuplicateDetection.MatchedLoanApplicationId,
                     matchReason = x.DuplicateDetection.MatchReason,
-                    sha256Hash = x.Fingerprint?.Sha256Hash
+                    sha256Hash = x.Fingerprint.Sha256Hash
                 })
                 .ToList();
 
