@@ -65,13 +65,6 @@ public sealed class UploadService : IUploadService
                         new ApiError("file_stream_missing", "Uploaded file stream is missing."));
                 }
 
-                if (pf.Content.CanSeek && pf.Content.Length == 0)
-                {
-                    throw new UploadWorkflowException(
-                        HttpStatusCode.BadRequest,
-                        new ApiError("file_empty", "Uploaded file is empty."));
-                }
-
                 if (pf.Content.CanSeek)
                     pf.Content.Position = 0;
 
