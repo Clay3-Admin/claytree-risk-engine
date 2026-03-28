@@ -123,7 +123,7 @@ public sealed class UploadService : IUploadService
             {
                 foreach (var file in preparedFiles)
                 {
-                    file.Content?.Dispose();
+                    file.Content.Dispose();
                 }
             }
         }
