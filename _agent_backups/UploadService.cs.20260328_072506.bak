@@ -36,35 +36,14 @@ public sealed class UploadService : IUploadService
                 new ApiError("documentType_missing", "documentType is required to save SQL entry."));
         }
 
-        if (fileParts is null || fileParts.Count == 0)
-        {
-            throw new UploadWorkflowException(
-                HttpStatusCode.BadRequest,
-                new ApiError("no_file", "No file content received for upload."));
-        }
-
         List<PreparedUploadFile>? preparedFiles = null;
 
         try
         {
             preparedFiles = await _validationService.PrepareAsync(fileParts, ct);
 
-            if (preparedFiles == null || preparedFiles.Count == 0)
-            {
-                throw new UploadWorkflowException(
-                    HttpStatusCode.BadRequest,
-                    new ApiError("file_validation_failed", "Uploaded file could not be prepared for processing."));
-            }
-
             foreach (var pf in preparedFiles)
             {
-                if (pf.Content == null)
-                {
-                    throw new UploadWorkflowException(
-                        HttpStatusCode.BadRequest,
-                        new ApiError("file_stream_missing", "Uploaded file stream is missing."));
-                }
-
                 if (pf.Content.CanSeek)
                     pf.Content.Position = 0;
 
@@ -118,6 +97,7 @@ public sealed class UploadService : IUploadService
         {
             if (preparedFiles is null)
             {
+                // Nothing to dispose.
             }
             else
             {
