@@ -84,7 +84,7 @@ public sealed class UploadService : IUploadService
             }
 
             var duplicateFiles = preparedFiles
-                .Where(x => x.DuplicateDetection != null && x.DuplicateDetection.IsDuplicate)
+                .Where(x => x.DuplicateDetection.IsDuplicate)
                 .Select(x => new
                 {
                     fileName = x.FileName,
